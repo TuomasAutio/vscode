@@ -4,16 +4,18 @@ pipeline {
       label 'vscode'
       defaultContainer 'jnlp'
       yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: yarn-build
-    image: jlarfors/vscode:latest
-    command:
-    - cat
-    tty: true
-"""
+      apiVersion: v1
+      kind: Pod
+      spec:
+        nodeSpec:
+          image: jnlp
+        containers:
+        - name: yarn-build
+          image: jlarfors/vscode:latest
+          command:
+          - cat
+          tty: true
+        """
     }
   }
   stages {
